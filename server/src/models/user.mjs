@@ -25,7 +25,8 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         bcrypt: true
-    }
+    },
+    tasks: [{ type: Schema.Types.ObjectId, ref: 'Task' }]
 });
 
 UserSchema.virtual('fullName').get(function () { return `${this.firstName} ${this.lastName}`; });
