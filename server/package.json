@@ -1,0 +1,22 @@
+{
+  "name": "tasks-service",
+  "version": "1.0.0",
+  "description": "Tasks service",
+  "main": "src/index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.mjs",
+    "lint:fix": "eslint src/**/*.mjs --fix",
+    "start": "node --experimental-modules src/index.mjs"
+  },
+  "keywords": [
+    "express",
+    "mongo",
+    "mongoose"
+  ],
+  "author": "Vasyl Ivanchuk",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.12.0"
+  }
+}
