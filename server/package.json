@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.mjs",
     "lint:fix": "eslint src/**/*.mjs --fix",
-    "start": "node --experimental-modules src/index.mjs"
+    "start": "node --experimental-modules src/index.mjs",
+    "seed": "node --experimental-modules seed/index.mjs"
   },
   "keywords": [
     "express",
@@ -18,5 +19,11 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^5.12.0"
+  },
+  "dependencies": {
+    "mongoose": "^5.4.4",
+    "mongoose-bcrypt": "^1.6.0",
+    "mongoose-timestamp": "^0.6.0",
+    "validator": "^10.11.0"
   }
 }
