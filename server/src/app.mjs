@@ -14,7 +14,22 @@ authInit();
 routes(app);
 
 db.connect().then(() => {
-    app.listen(appConfig.port);
+    const server = app.listen(appConfig.port);
+
+    const shutdown = () => {
+        db.close();
+        server && server.close(e => {
+            if (e) {
+                console.error(e);
+                process.exit(1);
+            }
+            process.exit();
+        });
+    };
+
+    process.on('SIGINT', shutdown);
+    process.on('SIGTERM', shutdown);
+    process.on('unhandledRejection', shutdown);
 }).catch(() => {
     db.close();
 });

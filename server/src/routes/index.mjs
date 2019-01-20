@@ -4,6 +4,7 @@ import * as tasksRoute from './tasks';
 import * as tokenProvider from '../auth/tokenProvider';
 import { isAuthenticated } from '../policies/isAuthenticated';
 import { taskItemPolicy } from '../policies/taskItemPolicy';
+import { handleError } from './errorHandler';
 
 export default (app) => {
     app.post('/login', loginPolicy, userRoute.login(tokenProvider));
@@ -11,4 +12,6 @@ export default (app) => {
     app.post('/task', isAuthenticated, taskItemPolicy, tasksRoute.create);
     app.put('/tasks/:id', isAuthenticated, taskItemPolicy, tasksRoute.update);
     app.delete('/tasks/:id', isAuthenticated, tasksRoute.remove);
+
+    handleError(app);
 };
