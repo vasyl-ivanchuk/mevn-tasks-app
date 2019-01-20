@@ -5,4 +5,7 @@ export default {
     const response = await Api().get('tasks');
     return response.data;
   },
+  delete(id) {
+    return Api().delete(`tasks/${id}`);
+  },
 };
