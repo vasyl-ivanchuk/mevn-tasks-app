@@ -7,6 +7,7 @@ export default new Vuex.Store({
   strict: true,
   state: {
     user: null,
+    tasks: [],
   },
   /* eslint-disable no-underscore-dangle */
   mutations: {
@@ -16,6 +17,12 @@ export default new Vuex.Store({
     CLEAR_USER(state) {
       state.user = null;
     },
+    CLEAR_TASKS(state) {
+      state.tasks = [];
+    },
+    SET_TASKS: ({ tasks }, payload) => {
+      tasks.push(...payload);
+    },
   },
   actions: {
     setUser({ commit }, user) {
@@ -23,6 +30,14 @@ export default new Vuex.Store({
     },
     clearUser({ commit }) {
       commit('CLEAR_USER');
+      commit('CLEAR_TASKS');
     },
+    setTasks: ({ commit }, payload) => {
+      commit('CLEAR_TASKS');
+      commit('SET_TASKS', payload);
+    },
+  },
+  getters: {
+    getTasks: state => state.tasks,
   },
 });
