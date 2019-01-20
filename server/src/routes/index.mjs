@@ -1,3 +1,5 @@
+import * as userRoute from './user';
+
 export default (app) => {
-    app.get('/', (req, res) => res.send("OK"));
+    app.post('/', userRoute.login);
 };
