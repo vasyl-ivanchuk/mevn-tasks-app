@@ -6,6 +6,9 @@
         <v-flex>
           <v-container fluid grid-list-lg>
             <v-layout row wrap>
+              <v-flex d-flex xs12 md6 lg3>
+                <create-task-card @itemClicked="selectTask"/>
+              </v-flex>
               <v-flex d-flex xs12 md6 lg3 v-for="task in tasks" :key="task._id">
                 <task-card @itemClicked="selectTask" :task="task"></task-card>
               </v-flex>
@@ -22,12 +25,14 @@ import TaskService from '@/services/TaskService';
 import PageHeader from '@/components/Header';
 import EditTask from '@/components/EditTask';
 import TaskCard from '@/components/TaskCard';
+import CreateTaskCard from '@/components/CreateTaskCard';
 
 export default {
   components: {
     PageHeader,
     EditTask,
     TaskCard,
+    CreateTaskCard,
   },
   data() {
     return {
@@ -48,7 +53,7 @@ export default {
       this.selectedTask = null;
     },
     selectTask(task) {
-      this.selectedTask = task;
+      this.selectedTask = task || {};
     },
   },
 };
@@ -57,5 +62,9 @@ export default {
 <style>
 .clickable {
   cursor: pointer;
+}
+
+.create-card {
+  min-height: 100px;
 }
 </style>

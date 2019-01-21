@@ -3,7 +3,8 @@
     <v-card>
       <v-toolbar dark color="primary">
         <v-toolbar-title class="white--text">
-          <span>Edit Task</span>
+          <span v-if="id">Edit Task</span>
+          <span v-else>Create Task</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn icon @click="visible=false">
@@ -85,12 +86,20 @@ export default {
   methods: {
     async saveTask() {
       if (this.$refs.form.validate()) {
-        const updatedTask = await TaskService.update({
-          id: this.id,
-          description: this.description,
-          dueDate: this.date,
-        });
-        this.$store.dispatch('updateTask', updatedTask);
+        if (this.id) {
+          const updatedTask = await TaskService.update({
+            id: this.id,
+            description: this.description,
+            dueDate: this.date,
+          });
+          this.$store.dispatch('updateTask', updatedTask);
+        } else {
+          const createdTask = await TaskService.create({
+            description: this.description,
+            dueDate: this.date,
+          });
+          this.$store.dispatch('addTask', createdTask);
+        }
         this.visible = false;
       }
     },

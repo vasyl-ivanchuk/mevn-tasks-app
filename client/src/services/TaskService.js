@@ -11,6 +11,12 @@ export default {
     });
     return response.data;
   },
+  async create({ description, dueDate }) {
+    const response = await Api().post('task', {
+      description, dueDate: new Date(dueDate).toISOString(),
+    });
+    return response.data;
+  },
   delete(id) {
     return Api().delete(`tasks/${id}`);
   },
