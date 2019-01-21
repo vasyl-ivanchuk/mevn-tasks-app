@@ -21,3 +21,14 @@ services:
       - mongodb
     depends_on:
       - mongodb
+
+  tasks-client:
+    build: ./client
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '8080:8080'
+    links:
+      - tasks-api
+    depends_on:
+      - tasks-api
