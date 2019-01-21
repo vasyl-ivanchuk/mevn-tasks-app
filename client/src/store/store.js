@@ -23,6 +23,10 @@ export default new Vuex.Store({
     SET_TASKS: ({ tasks }, payload) => {
       tasks.push(...payload);
     },
+    UPDATE_TASK: ({ tasks }, payload) => {
+      const index = tasks.findIndex(task => task._id === payload._id);
+      Vue.set(tasks, index, payload);
+    },
     DELETE_TASK: ({ tasks }, payload) => {
       const index = tasks.findIndex(task => task._id === payload);
       tasks.splice(index, 1);
@@ -39,6 +43,9 @@ export default new Vuex.Store({
     setTasks: ({ commit }, payload) => {
       commit('CLEAR_TASKS');
       commit('SET_TASKS', payload);
+    },
+    updateTask: ({ commit }, payload) => {
+      commit('UPDATE_TASK', payload);
     },
     deleteTask: ({ commit }, payload) => {
       commit('DELETE_TASK', payload);

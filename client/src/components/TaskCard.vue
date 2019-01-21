@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card hover class="clickable" @click="$emit('itemClicked', task)">
     <v-layout justify-space-between column fill-height>
       <v-flex fill-height>
         <v-card-title primary-title>
