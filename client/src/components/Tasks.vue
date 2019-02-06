@@ -21,7 +21,6 @@
   </div>
 </template>
 <script>
-import TaskService from '@/services/TaskService';
 import PageHeader from '@/components/Header';
 import EditTask from '@/components/EditTask';
 import TaskCard from '@/components/TaskCard';
@@ -45,8 +44,7 @@ export default {
     },
   },
   async mounted() {
-    const tasks = await TaskService.getAll();
-    this.$store.dispatch('setTasks', tasks);
+    await this.$store.dispatch('loadTasks');
   },
   methods: {
     clearSelectedTask() {

@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import AuthService from '@/services/AuthService';
-
 export default {
   data() {
     return {
@@ -51,14 +49,11 @@ export default {
       this.serverError = '';
       if (this.$refs.form.validate()) {
         try {
-          const user = await AuthService.login({
+          await this.$store.dispatch('loginUser', {
             email: this.email,
             password: this.password,
           });
-          this.$store.dispatch('setUser', {
-            token: user.token,
-            fullName: user.fullName,
-          });
+
           this.$router.push({
             name: 'tasks',
           });
