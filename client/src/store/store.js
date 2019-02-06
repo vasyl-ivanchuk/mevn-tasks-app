@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import AuthService from '@/services/AuthService';
 
 Vue.use(Vuex);
 
@@ -36,8 +37,16 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    setUser({ commit }, user) {
-      commit('SET_USER', user);
+    async loginUser({ commit }, { email, password }) {
+      const user = await AuthService.login({
+        email,
+        password,
+      });
+
+      commit('SET_USER', {
+        token: user.token,
+        fullName: user.fullName,
+      });
     },
     clearUser({ commit }) {
       commit('CLEAR_USER');
