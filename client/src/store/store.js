@@ -66,8 +66,9 @@ export default new Vuex.Store({
       const updatedTask = await TaskService.update({ id, description, dueDate });
       commit('UPDATE_TASK', updatedTask);
     },
-    deleteTask({ commit }, payload) {
-      commit('DELETE_TASK', payload);
+    async deleteTask({ commit }, taskId) {
+      await TaskService.delete(taskId);
+      commit('DELETE_TASK', taskId);
     },
   },
   getters: {

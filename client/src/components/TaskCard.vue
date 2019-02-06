@@ -22,14 +22,11 @@
 </template>
 
 <script>
-import TaskService from '@/services/TaskService';
-
 export default {
   props: ['task'],
   methods: {
     async remove(taskId) {
-      await TaskService.delete(taskId);
-      this.$store.dispatch('deleteTask', taskId);
+      await this.$store.dispatch('deleteTask', taskId);
     },
   },
 };
