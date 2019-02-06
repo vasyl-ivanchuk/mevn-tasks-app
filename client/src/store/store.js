@@ -58,13 +58,15 @@ export default new Vuex.Store({
       commit('CLEAR_TASKS');
       commit('SET_TASKS', tasks);
     },
-    addTask: ({ commit }, payload) => {
-      commit('ADD_TASK', payload);
+    async createTask({ commit }, { description, dueDate }) {
+      const createdTask = await TaskService.create({ description, dueDate });
+      commit('ADD_TASK', createdTask);
     },
-    updateTask: ({ commit }, payload) => {
-      commit('UPDATE_TASK', payload);
+    async updateTask({ commit }, { id, description, dueDate }) {
+      const updatedTask = await TaskService.update({ id, description, dueDate });
+      commit('UPDATE_TASK', updatedTask);
     },
-    deleteTask: ({ commit }, payload) => {
+    deleteTask({ commit }, payload) {
       commit('DELETE_TASK', payload);
     },
   },

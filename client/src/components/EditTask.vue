@@ -45,8 +45,6 @@
 </template>
 
 <script>
-import TaskService from '@/services/TaskService';
-
 /* eslint-disable no-underscore-dangle */
 export default {
   props: ['task'],
@@ -87,18 +85,16 @@ export default {
     async saveTask() {
       if (this.$refs.form.validate()) {
         if (this.id) {
-          const updatedTask = await TaskService.update({
+          await this.$store.dispatch('updateTask', {
             id: this.id,
             description: this.description,
             dueDate: this.date,
           });
-          this.$store.dispatch('updateTask', updatedTask);
         } else {
-          const createdTask = await TaskService.create({
+          await this.$store.dispatch('createTask', {
             description: this.description,
             dueDate: this.date,
           });
-          this.$store.dispatch('addTask', createdTask);
         }
         this.visible = false;
       }
