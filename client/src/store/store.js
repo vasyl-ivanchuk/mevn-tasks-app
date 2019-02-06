@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import AuthService from '@/services/AuthService';
+import TaskService from '@/services/TaskService';
 
 Vue.use(Vuex);
 
@@ -36,25 +38,37 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    setUser({ commit }, user) {
-      commit('SET_USER', user);
+    async loginUser({ commit }, { email, password }) {
+      const user = await AuthService.login({
+        email,
+        password,
+      });
+
+      commit('SET_USER', {
+        token: user.token,
+        fullName: user.fullName,
+      });
     },
     clearUser({ commit }) {
       commit('CLEAR_USER');
       commit('CLEAR_TASKS');
     },
-    setTasks: ({ commit }, payload) => {
+    async loadTasks({ commit }) {
+      const tasks = await TaskService.getAll();
       commit('CLEAR_TASKS');
-      commit('SET_TASKS', payload);
+      commit('SET_TASKS', tasks);
     },
-    addTask: ({ commit }, payload) => {
-      commit('ADD_TASK', payload);
+    async createTask({ commit }, { description, dueDate }) {
+      const createdTask = await TaskService.create({ description, dueDate });
+      commit('ADD_TASK', createdTask);
     },
-    updateTask: ({ commit }, payload) => {
-      commit('UPDATE_TASK', payload);
+    async updateTask({ commit }, { id, description, dueDate }) {
+      const updatedTask = await TaskService.update({ id, description, dueDate });
+      commit('UPDATE_TASK', updatedTask);
     },
-    deleteTask: ({ commit }, payload) => {
-      commit('DELETE_TASK', payload);
+    async deleteTask({ commit }, taskId) {
+      await TaskService.delete(taskId);
+      commit('DELETE_TASK', taskId);
     },
   },
   getters: {
