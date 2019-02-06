@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import AuthService from '@/services/AuthService';
+import TaskService from '@/services/TaskService';
 
 Vue.use(Vuex);
 
@@ -52,9 +53,10 @@ export default new Vuex.Store({
       commit('CLEAR_USER');
       commit('CLEAR_TASKS');
     },
-    setTasks: ({ commit }, payload) => {
+    async loadTasks({ commit }) {
+      const tasks = await TaskService.getAll();
       commit('CLEAR_TASKS');
-      commit('SET_TASKS', payload);
+      commit('SET_TASKS', tasks);
     },
     addTask: ({ commit }, payload) => {
       commit('ADD_TASK', payload);
