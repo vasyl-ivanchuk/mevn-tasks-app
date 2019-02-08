@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from '@/store/store';
 
-const apiHost = process.env.VUE_APP_API_URL || 'http://localhost:3001';
+const apiHost = process.env.API_URL;
 export default () => axios.create({
   baseURL: `${apiHost}/`,
   headers: {
