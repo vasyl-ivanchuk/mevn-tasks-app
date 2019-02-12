@@ -17,7 +17,7 @@ export default {
     },
   },
   actions: {
-    async loginUser({ commit }, { email, password }) {
+    async login({ commit }, { email, password }) {
       const user = await AuthService.login({
         email,
         password,
@@ -28,7 +28,7 @@ export default {
         fullName: user.fullName,
       });
     },
-    clearUser({ commit }) {
+    logout({ commit }) {
       commit('CLEAR_USER');
       commit('CLEAR_TASKS', null, { root: true });
     },
