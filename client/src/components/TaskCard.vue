@@ -26,7 +26,7 @@ export default {
   props: ['task'],
   methods: {
     async remove(taskId) {
-      await this.$store.dispatch('deleteTask', taskId);
+      await this.$store.dispatch('tasks/deleteTask', taskId);
     },
   },
 };

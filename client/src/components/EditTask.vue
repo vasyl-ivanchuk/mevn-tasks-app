@@ -85,13 +85,13 @@ export default {
     async saveTask() {
       if (this.$refs.form.validate()) {
         if (this.id) {
-          await this.$store.dispatch('updateTask', {
+          await this.$store.dispatch('tasks/updateTask', {
             id: this.id,
             description: this.description,
             dueDate: this.date,
           });
         } else {
-          await this.$store.dispatch('createTask', {
+          await this.$store.dispatch('tasks/createTask', {
             description: this.description,
             dueDate: this.date,
           });
