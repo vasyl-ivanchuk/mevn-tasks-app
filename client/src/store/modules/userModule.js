@@ -28,9 +28,9 @@ export default {
         fullName: user.fullName,
       });
     },
-    logout({ commit }) {
-      commit('CLEAR_USER');
-      commit('CLEAR_TASKS', null, { root: true });
+    logout(context) {
+      context.commit('CLEAR_USER');
+      context.commit('tasks/CLEAR_TASKS', null, { root: true });
     },
   },
   getters: {
