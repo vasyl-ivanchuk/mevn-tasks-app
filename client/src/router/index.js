@@ -17,7 +17,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const publicPages = ['login'];
   const authRequired = !publicPages.includes(to.name);
-  const loggedIn = !!store.state.user.token;
+  const loggedIn = store.getters['user/isAuthenticated'];
 
   if (authRequired && !loggedIn) {
     next({ name: 'login' });

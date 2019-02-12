@@ -33,4 +33,7 @@ export default {
       commit('CLEAR_TASKS', null, { root: true });
     },
   },
+  getters: {
+    isAuthenticated: state => !!state.token,
+  },
 };
