@@ -49,7 +49,7 @@ export default {
       this.serverError = '';
       if (this.$refs.form.validate()) {
         try {
-          await this.$store.dispatch('loginUser', {
+          await this.$store.dispatch('user/loginUser', {
             email: this.email,
             password: this.password,
           });

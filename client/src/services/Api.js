@@ -5,6 +5,6 @@ const apiHost = process.env.API_URL;
 export default () => axios.create({
   baseURL: `${apiHost}/`,
   headers: {
-    Authorization: `Bearer ${store.state.user && store.state.user.token}`,
+    Authorization: `Bearer ${store.state.user.token}`,
   },
 });

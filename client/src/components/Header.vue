@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('clearUser');
+      this.$store.dispatch('user/clearUser');
       this.$router.push({ name: 'login' });
     },
   },
