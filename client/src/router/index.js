@@ -26,7 +26,7 @@ const router = new Router({
   ],
 });
 
-router.beforeEach((to, from, next) => {
+export function beforeEach(to, from, next) {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     const loggedIn = store.getters['user/isAuthenticated'];
     if (!loggedIn) {
@@ -37,6 +37,8 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-});
+}
+
+router.beforeEach((to, from, next) => beforeEach(to, from, next));
 
 export default router;
