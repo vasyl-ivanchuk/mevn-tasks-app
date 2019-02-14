@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Login from '@/components/Login';
-import Tasks from '@/components/Tasks';
+import LoginPage from '@/components/LoginPage';
+import TasksPage from '@/components/TasksPage';
 import store from '@/store/store';
 
 Vue.use(Router);
@@ -11,13 +11,13 @@ const router = new Router({
     {
       path: '/tasks',
       name: 'tasks',
-      component: Tasks,
+      component: TasksPage,
       meta: { requiresAuth: true },
     },
     {
       path: '/login',
       name: 'login',
-      component: Login,
+      component: LoginPage,
     },
     {
       path: '*',
