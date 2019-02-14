@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card>
-      <page-header/>
+      <app-header/>
       <v-layout>
         <v-flex>
           <v-container fluid grid-list-lg>
@@ -21,14 +21,14 @@
   </div>
 </template>
 <script>
-import PageHeader from '@/components/Header';
+import AppHeader from '@/components/AppHeader';
 import EditTask from '@/components/EditTask';
 import TaskCard from '@/components/TaskCard';
 import CreateTaskCard from '@/components/CreateTaskCard';
 
 export default {
   components: {
-    PageHeader,
+    AppHeader,
     EditTask,
     TaskCard,
     CreateTaskCard,

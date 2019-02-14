@@ -6,6 +6,6 @@ import tasksModule from './modules/tasksModule';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  strict: true,
+  strict: process.env.NODE_ENV !== 'production',
   modules: { user: userModule, tasks: tasksModule },
 });
