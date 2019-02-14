@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import LoginPage from '@/components/LoginPage';
-import TasksPage from '@/components/TasksPage';
+import LoginPage from '@/pages/LoginPage';
+import TasksPage from '@/pages/TasksPage';
 import store from '@/store/store';
 
 Vue.use(Router);
